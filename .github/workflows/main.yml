@@ -21,7 +21,7 @@ jobs:
         uses: google/osv-scanner-action/osv-scanner-action@e69cc6c86b31f1e7e23935bbe7031b50e51082de
         with:
           entryPoint: osv-scanner
-          scan-args: 'scan source --format=sarif --output=osv-results.sarif ./app'
+          scan-args: 'scan --source ./app --format sarif --output osv-results.sarif'
           
       - name: Create SARIF file if not exists
         run: |
