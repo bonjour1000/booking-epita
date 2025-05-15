@@ -22,7 +22,7 @@ jobs:
         with:
           entryPoint: osv-scanner
           scan-args: |
-            --format sarif
+            ---format sarif
             --output osv-results.sarif
             ./app
           
