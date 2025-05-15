@@ -5,6 +5,11 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+permissions:
+  security-events: write
+  actions: read
+  contents: read
+
 jobs:
   osv-scanner:
     name: OSV Scanner
@@ -15,8 +20,8 @@ jobs:
       - name: Run OSV Scanner
         uses: google/osv-scanner-action/osv-scanner-action@e69cc6c86b31f1e7e23935bbe7031b50e51082de
         with:
-          entryPoint: osv-scanner scan source
-          scan-args: '--format sarif --output osv-results.sarif ./app'
+          entryPoint: osv-scanner
+          scan-args: 'scan source --format sarif --output osv-results.sarif ./app'
           
       - name: Create SARIF file if not exists
         run: |
