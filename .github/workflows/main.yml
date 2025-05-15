@@ -16,7 +16,7 @@ jobs:
         uses: google/osv-scanner-action/osv-scanner-action@e69cc6c86b31f1e7e23935bbe7031b50e51082de
         with:
           entryPoint: osv-scanner
-          args: .
+          scan-args: '--format sarif --output osv-results.sarif ./app'
           
       - name: Create SARIF file if not exists
         run: |
@@ -43,6 +43,11 @@ jobs:
       - name: Create SARIF file if not exists
         run: |
           touch semgrep-results.sarif
+          
+      - name: Validate SARIF file
+        run: |
+          jq '.' semgrep-results.sarif > semgrep-results-valid.sarif
+          mv semgrep-results-valid.sarif semgrep-results.sarif
           
       - name: Upload SARIF report
         uses: github/codeql-action/upload-sarif@v3
