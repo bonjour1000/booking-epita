@@ -15,7 +15,12 @@ jobs:
       - name: Run OSV Scanner
         uses: google/osv-scanner-action/osv-scanner-action@e69cc6c86b31f1e7e23935bbe7031b50e51082de
         with:
-          path: .
+          entryPoint: osv-scanner
+          args: .
+          
+      - name: Create SARIF file if not exists
+        run: |
+          touch osv-results.sarif
           
       - name: Upload SARIF report
         uses: github/codeql-action/upload-sarif@v3
@@ -33,7 +38,7 @@ jobs:
       
       - name: Run Semgrep Analysis
         run: |
-          semgrep --config=p/java . --sarif
+          semgrep --config=p/java . --sarif > semgrep-results.sarif
           
       - name: Create SARIF file if not exists
         run: |
