@@ -20,8 +20,7 @@ jobs:
       - name: Run OSV Scanner
         uses: google/osv-scanner-action/osv-scanner-action@v2.0.2
         with:
-          entryPoint: osv-scanner
-          scan-args: |
+          scan-args: |-
             --format sarif
             --output osv-results.sarif
             ./app
