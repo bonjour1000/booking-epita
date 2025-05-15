@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Run OSV Scanner
-        uses: google/osv-scanner-action/osv-scanner-action@latest
+        uses: google/osv-scanner-action/osv-scanner-action@v2.0.2
         with:
           entryPoint: osv-scanner
           scan-args: |
